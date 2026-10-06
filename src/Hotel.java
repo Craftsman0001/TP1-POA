@@ -1,5 +1,6 @@
 import java.util.List;
 
+// Classe représentant un hébergement de type "Hôtel"
 public class Hotel extends Hebergement {
 
     public Hotel(String nom, Adresse adresse, List<TypeService> typeServices, List<Chambres> chambres) {

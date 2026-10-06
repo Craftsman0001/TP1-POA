@@ -1,6 +1,6 @@
 import java.util.Objects;
 
-// Adresse d'un hebergement ou d'un client
+// Classe représentant une adresse d'un client ou d'un hébergement
 public class Adresse {
     private String pays;
     private String province;
@@ -53,7 +53,7 @@ public class Adresse {
                 && Objects.equals(rue, autreAdresse.rue);
     }
 
-    // Va avec equals
+    // Génère un code de hachage pour l'adresse
     @Override
     public int hashCode() {
         return Objects.hash(pays, province, ville, quartier, rue);

@@ -1,13 +1,12 @@
+// Classe représentant un type de chambre dans un hébergement
 public class Chambres {
     private int nombreChambres;
-    private int nombreDisponible;
     private TypeChambre type;
     private float prixParNuit;
 
-    public Chambres(int nombreChambres, int nombreDisponible, TypeChambre type, float prixParNuit) {
+    public Chambres(int nombreChambres, TypeChambre type, float prixParNuit) {
         this.type = type;
         this.nombreChambres = nombreChambres;
-        this.nombreDisponible = nombreDisponible;
         this.prixParNuit = prixParNuit;
     }
 
@@ -28,7 +27,6 @@ public class Chambres {
         return "Chambres:\n" +
                 " typeChambre: " + type + "\n" +
                 " nombreChambres: " + nombreChambres + "\n" +
-                " nombreDisponible: " + nombreDisponible + "\n" +
                 " prixParNuit: " + prixParNuit;
     }
 }

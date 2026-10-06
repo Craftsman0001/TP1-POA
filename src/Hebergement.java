@@ -2,7 +2,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Hebergement { // Classe mere de Hotel, Motel et CouetteEtCafe
+// Classe représentant un hébergement (classe mère pour Hotel, Motel et CouetteEtCafe)
+public class Hebergement {
     private String nom;
     private Adresse adresse;
     private List<TypeService> typeServices;
@@ -15,7 +16,7 @@ public class Hebergement { // Classe mere de Hotel, Motel et CouetteEtCafe
         this.chambres = new ArrayList<>(chambres);
     }
 
-    // Nombre de chambres pour ce type
+    // Retourne la capacité totale pour un type de chambre donné
     public int getCapacitePourType(TypeChambre typeDemande) {
         for (Chambres c : chambres) {
             if (c.getTypeChambre() == typeDemande) {
