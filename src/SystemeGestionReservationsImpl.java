@@ -48,7 +48,7 @@ public class SystemeGestionReservationsImpl implements SystemeGestionReservation
 
     // Méthode pour effectuer une réservation
     @Override
-    public Reservation reserver(Client leClient, Hebergement lHebergement, Map<TypeChambre, Integer> chambresDemandees, Date arrivee, Date depart) {
+    public Reservation reserver(Client client, Hebergement hebergement, Map<TypeChambre, Integer> chambresDemandees, Date arrivee, Date depart) {
         // Calcul du nombre de nuits
         long jours = (depart.getTime() - arrivee.getTime()) / (1000 * 60 * 60 * 24);
         int nbNuits = (int) jours;
@@ -67,12 +67,12 @@ public class SystemeGestionReservationsImpl implements SystemeGestionReservation
             boolean typeTrouve = false;
 
             // Chercher cette chambre dans l'hébergement
-            for (Chambres c : lHebergement.getChambres()) {
+            for (Chambres c : hebergement.getChambres()) {
                 if (c.getTypeChambre() == typeDemande) {
                     typeTrouve = true;
                     
                     // Calculer la disponibilité réelle selon le calendrier
-                    int dispoReelle = calculerChambresDispo(lHebergement, typeDemande, arrivee, depart);
+                    int dispoReelle = calculerChambresDispo(hebergement, typeDemande, arrivee, depart);
                     
                     // Vérifier si la demande peut être satisfaite
                     if (dispoReelle >= quantiteDemandee) {
@@ -92,7 +92,7 @@ public class SystemeGestionReservationsImpl implements SystemeGestionReservation
 
         // Création de la réservation et sauvegarde
         int nouveauNumeroId = reservations.size() + 1; 
-        Reservation nouvelleRes = new Reservation(nouveauNumeroId, prixTotal, arrivee, depart, leClient, lHebergement, chambresConfirmees);
+        Reservation nouvelleRes = new Reservation(nouveauNumeroId, prixTotal, arrivee, depart, client, hebergement, chambresConfirmees);
         reservations.add(nouvelleRes);
         
         return nouvelleRes;
@@ -125,13 +125,13 @@ public class SystemeGestionReservationsImpl implements SystemeGestionReservation
     }
 
     // Outil pour calculer la disponibilité selon le calendrier
-    private int calculerChambresDispo(Hebergement hotel, TypeChambre typeDemande, Date arrivee, Date depart) {
-        int totalChambres = hotel.getCapacitePourType(typeDemande);
+    private int calculerChambresDispo(Hebergement hebergement, TypeChambre typeDemande, Date arrivee, Date depart) {
+        int totalChambres = hebergement.getCapacitePourType(typeDemande);
         int chambresBloquees = 0;
 
         for (Reservation res : reservations) {
             // regarder seulement les réservations pour le même hôtel
-            if (res.getHebergement().equals(hotel)) {
+            if (res.getHebergement().equals(hebergement)) {
                 // Vérifier si les dates se chevauchent
                 if (res.getDateArrivee().getTime() < depart.getTime() && res.getDateDepart().getTime() > arrivee.getTime()) {
                     

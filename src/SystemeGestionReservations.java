@@ -6,7 +6,7 @@ import java.util.Map;
 public interface SystemeGestionReservations {
     public List<Hebergement> trouverHebergement(String criteresRegion, TypeChambre typeCh, Date arrivee, Date depart, float prixMax, List<TypeService> services);
     
-    public Reservation reserver(Client leClient, Hebergement lHebergement, Map<TypeChambre, Integer> chambresDemandees, Date arrivee, Date depart);
+    public Reservation reserver(Client Client, Hebergement Hebergement, Map<TypeChambre, Integer> chambresDemandees, Date arrivee, Date depart);
     
     public void annuler(int numeroReservation);
 
