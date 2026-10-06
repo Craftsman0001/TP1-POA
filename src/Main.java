@@ -117,9 +117,10 @@ public class Main {
         // 4. Test d'annulation
         System.out.println("\n--- Annulation ---");
         
+        int numeroReservation = 1;
         try {
-            systemeApafi.annuler(1);
-            System.out.println("La reservation a ete annulee et les chambres sont de nouveau libres.");
+            systemeApafi.annuler(numeroReservation);
+            System.out.println("La reservation n°" + numeroReservation + " a ete annulee et les chambres sont de nouveau libres.");
         } catch (Exception e) {
             System.out.println("Echec : " + e.getMessage());
         }
